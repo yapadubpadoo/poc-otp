@@ -30,12 +30,7 @@ func main() {
 	fmt.Printf("OTP: %s\n\n", passcode)
 	userPasscode := promptForPasscode()
 	
-	valid, _ := totp.ValidateCustom(userPasscode, secret, time.Now(), totp.ValidateOpts{
-		Period:    30,
-		Skew:      1,
-		Digits:    otp.DigitsSix,
-		Algorithm: otp.AlgorithmSHA512,
-})
+	valid, _ := totp.ValidateCustom(userPasscode, secret, time.Now(), totpOptions)
 	if valid {
 		println("\n\nValid passcode!")
 		os.Exit(0)
